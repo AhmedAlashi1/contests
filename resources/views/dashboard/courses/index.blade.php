@@ -5,7 +5,7 @@
             <div class="card-header pb-0">
                 <div class="row row-xs wd-xl-80p">
                     <div class="col-sm-6 col-md-3 mg-t-10">
-                        <a href="{{route('courses.create')}}" class="btn btn-info-gradient btn-block"
+                        <a href="{{route('contests.create')}}" class="btn btn-info-gradient btn-block"
                            style="font-weight: bold; color: beige;">{{ __('messages.add') }}
                         </a>
                     </div>
@@ -20,7 +20,7 @@
             function updateMuscleStatus(id) {
 
                 $.ajax({
-                    url: '{{ route('update-courses-status', ":id") }}'.replace(':id', id),
+                    url: '{{ route('update-contests-status', ":id") }}'.replace(':id', id),
                     type: 'GET', // Use HTTP GET method here
                     success: function(response) {
                         $('#courses-table').DataTable().ajax.reload();

@@ -2,10 +2,8 @@
 
 namespace App\DataTables;
 
-use App\Models\Sections;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use App\Models\Courses;
+use App\Models\Contest;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -16,7 +14,7 @@ use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 
-class SectionsDataTable extends DataTable
+class ContestsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -27,33 +25,40 @@ class SectionsDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($sections) {
-               $title =  App::getLocale() == 'en' ? $sections->title_ar : $sections->title_en;
-                return view('dashboard.sections.actions', ['id' => $sections->id,'name' => $title, 'courses_id' => $sections->courses->id]);
+            ->addColumn('action', function ($contests) {
+               $title =  $contests->title;
+                return view('dashboard.contests.actions', ['id' => $contests->id,'name' => $title]);
             })
-            ->addColumn('status', function ($sections) {
-                return view('dashboard.sections.status', ['sections' => $sections]);
+            ->addColumn('status', function ($contests) {
+                return view('dashboard.contests.status', ['courses' => $contests]);
             })
-            ->addColumn('name', function ($sections) {
-                return App::getLocale() == 'en'  ? $sections->title_ar : $sections->title_en;
+//            ->addColumn('image', function ($contests) {
+//                return view('dashboard.contests.image', ['photo' => $contests->image]);
+//            })
+            ->addColumn('name', function ($contests) {
+                return  $contests->title;
             })
-            ->addColumn('courses', function ($sections) {
-                return $sections->courses ? $sections->courses->title_ar : '';
+            ->addColumn('question', function ($contests) {
+                return  $contests->question;
             })
-            ->addColumn('is_paid', function ($sections) {
-                return $sections->is_paid == 1 ? __('Paid') : __('Free');
+            ->addColumn('start_time', function ($contests) {
+                return  $contests->start_time;
             })
-
-            ->addColumn('created_at', function ($sections) {
-                return $sections->crecreated_at ?  $sections->created_at->format('Y-m-d H:i') : $sections->created_at ;
+            ->addColumn('end_time', function ($contests) {
+                return  $contests->end_time;
             })
+            ->addColumn('created_at', function ($contests) {
+                return $contests->created_at->format('Y-m-d H:i');
+            })
+//            ->addColumn('is_paid', function ($contests) {
+//                return $contests->is_paid == 1 ? __('Paid') : __('Free');
+//            })
             ->rawColumns(['action'])
 
 
             ->filterColumn('name', function ($query, $keyword) {
                 $query->where(function ($query) use ($keyword) {
-                    $query->where('title_ar', 'like', '%' . $keyword . '%')
-                        ->orWhere('title_en', 'like', '%' . $keyword . '%');
+                    $query->where('title', 'like', '%' . $keyword . '%');
                 });
             })
             ->filterColumn('created_at', function ($query, $keyword) {
@@ -65,7 +70,7 @@ class SectionsDataTable extends DataTable
                 $query->orderBy('status', $order);
             })
             ->orderColumn('name', function ($query, $order) {
-                $column = App::getLocale() == 'ar' ? 'title_ar' : 'title_en';
+                $column = 'title';
                 $query->orderBy($column, $order);
             })
             ->orderColumn('created_at', function ($query, $order) {
@@ -76,23 +81,13 @@ class SectionsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\sections $model
+     * @param \App\Models\Courses $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-//    public function query(Sections $model): QueryBuilder
-//    {
-//        return $model->newQuery()->latest();
-//    }
-
-    public function query(Sections $model, Request $request): QueryBuilder
+    public function query(Contest $model): QueryBuilder
     {
-        $id = $request->route('courses_id');
-
-        $query = $id ? $model->newQuery()->where('courses_id', $id)->with('courses') : $model->newQuery();
-
-        return $query->latest();
+        return $model->newQuery()->latest();
     }
-
 
     /**
      * Optional method if you want to use html builder.
@@ -102,7 +97,7 @@ class SectionsDataTable extends DataTable
     public function html(): HtmlBuilder
 {
     return $this->builder()
-        ->setTableId('sections-table')
+        ->setTableId('contests-table')
         ->columns($this->getColumns())
         ->minifiedAjax()
         //->dom('Bfrtip')
@@ -143,17 +138,18 @@ class SectionsDataTable extends DataTable
             Column::make('id')
                 ->title('#')
                 ->addClass('text-center pt-3'),
-//            Column::make('image')
-//                ->title(__('messages.photo'))
-//                ->addClass('text-center pt-3'),
+
             Column::make('name')
-                ->title(__('messages.Name'))
+                ->title(__('messages.title'))
                 ->addClass('text-center pt-3'),
-            Column::make('courses')
-                ->title(__('messages.courses'))
+            Column::make('question')
+                ->title(__('messages.question'))
                 ->addClass('text-center pt-3'),
-            Column::make('is_paid')
-                ->title(__('messages.payment_status'))
+            Column::make('start_time')
+                ->title(__('messages.start_time'))
+                ->addClass('text-center pt-3'),
+            Column::make('end_time')
+                ->title(__('messages.end_time'))
                 ->addClass('text-center pt-3'),
             Column::make('status')
                 ->title(__('messages.Status'))

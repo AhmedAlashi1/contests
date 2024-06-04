@@ -2,10 +2,9 @@
 
 namespace App\DataTables;
 
-use App\Models\BuyCourseUser;
-use Illuminate\Http\Request;
+use App\Models\Results;
 use Illuminate\Support\Facades\App;
-use App\Models\Courses;
+use App\Models\Contest;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -16,7 +15,7 @@ use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 
-class BuyCourseUserDataTable extends DataTable
+class ResultsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -24,48 +23,56 @@ class BuyCourseUserDataTable extends DataTable
      * @param QueryBuilder $query Results from query() method.
      * @return \Yajra\DataTables\EloquentDataTable
      */
+    protected $contestId;
+
+    public function withId(int $contests_id):self
+    {
+        $this->contestId = $contests_id;
+        return $this;
+    }
+
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($buy_course_user) {
-               $title =  $buy_course_user->courses ? $buy_course_user->courses->title_ar : '';;
-                return view('dashboard.buy_course_user.actions', ['id' => $buy_course_user->id,'name' => $title]);
-            })
-            ->addColumn('status', function ($buy_course_user) {
-                return view('dashboard.buy_course_user.status', ['buy_course_user' => $buy_course_user]);
+
+            ->addColumn('status', function ($results) {
+                return view('dashboard.results.status', ['results' => $results]);
             })
 
-            ->addColumn('name', function ($buy_courses) {
-                return $buy_courses->courses ? $buy_courses->courses->title_ar : null;
+            ->addColumn('name', function ($results) {
+                return  $results->user_name;
             })
-            ->addColumn('courses', function ($buy_course_user) {
-                return $buy_course_user->courses ? $buy_course_user->courses->title_ar : '';
+            ->addColumn('answer', function ($results) {
+                return  $results->answer;
             })
-            ->addColumn('created_at', function ($buy_courses) {
-                return $buy_courses->created_at->format('Y-m-d H:i');
+            ->addColumn('question', function ($results) {
+                return  $results->contest->title;
             })
 
-            ->rawColumns(['action'])
+            ->addColumn('created_at', function ($results) {
+                return $results->created_at->format('Y-m-d H:i');
+            })
 
-//
-//            ->filterColumn('name', function ($query, $keyword) {
-//                $query->where(function ($query) use ($keyword) {
-//                    $query->where('title_ar', 'like', '%' . $keyword . '%')
-//                        ->orWhere('title_en', 'like', '%' . $keyword . '%');
-//                });
-//            })
-//            ->filterColumn('created_at', function ($query, $keyword) {
-//                $query->where(function ($query) use ($keyword) {
-//                    $query->where('created_at', 'like', '%' . $keyword . '%');
-//                });
-//            })
-//            ->orderColumn('status', function ($query, $order) {
-//                $query->orderBy('status', $order);
-//            })
-//            ->orderColumn('name', function ($query, $order) {
-//                $column = App::getLocale() == 'ar' ? 'title_ar' : 'title_en';
-//                $query->orderBy($column, $order);
-//            })
+//            ->rawColumns(['action'])
+
+
+            ->filterColumn('name', function ($query, $keyword) {
+                $query->where(function ($query) use ($keyword) {
+                    $query->where('user_name', 'like', '%' . $keyword . '%');
+                });
+            })
+            ->filterColumn('created_at', function ($query, $keyword) {
+                $query->where(function ($query) use ($keyword) {
+                    $query->where('created_at', 'like', '%' . $keyword . '%');
+                });
+            })
+            ->orderColumn('status', function ($query, $order) {
+                $query->orderBy('status', $order);
+            })
+            ->orderColumn('name', function ($query, $order) {
+                $column = 'user_name';
+                $query->orderBy($column, $order);
+            })
             ->orderColumn('created_at', function ($query, $order) {
                 $query->orderBy('created_at', $order);
             });
@@ -74,16 +81,12 @@ class BuyCourseUserDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\BuyCourseUser $model
+     * @param \App\Models\Courses $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(BuyCourseUser $model ,Request $request): QueryBuilder
+    public function query(Results $model ): QueryBuilder
     {
-        $id = $request->route('id');
-
-        $query = $id ? $model->newQuery()->where('user_id', $id)->with('courses','users') : $model->newQuery();
-        return $query->latest();
-
+        return $model->newQuery()->where('contest_id',$this->contestId)->with('contest')->latest();
     }
 
     /**
@@ -94,7 +97,7 @@ class BuyCourseUserDataTable extends DataTable
     public function html(): HtmlBuilder
 {
     return $this->builder()
-        ->setTableId('buy_course_user-table')
+        ->setTableId('results-table')
         ->columns($this->getColumns())
         ->minifiedAjax()
         //->dom('Bfrtip')
@@ -135,22 +138,34 @@ class BuyCourseUserDataTable extends DataTable
             Column::make('id')
                 ->title('#')
                 ->addClass('text-center pt-3'),
+
             Column::make('name')
-                ->title(__('messages.courses'))
+                ->title(__('messages.title'))
                 ->addClass('text-center pt-3'),
+//            Column::make('question')
+//                ->title(__('messages.question'))
+//                ->addClass('text-center pt-3'),
+            Column::make('question')
+                ->title(__('messages.question'))
+                ->addClass('text-center pt-3'),
+            Column::make('answer')
+                ->title(__('messages.answer'))
+                ->addClass('text-center pt-3'),
+
+
             Column::make('status')
-                ->title(__('messages.Status'))
+                ->title(__('Answer status'))
                 ->addClass('text-center'),
             Column::make('created_at')
                 ->title(__('messages.created at'))
                 ->addClass('text-center pt-3'),
-            Column::computed('action')
-                ->title(__('messages.Actions'))
-                ->exportable(false)
-                ->printable(false)
-                ->addClass('text-center pt-3')
-                ->orderable(false)
-                ->searchable(false),
+//            Column::computed('action')
+//                ->title(__('messages.Actions'))
+//                ->exportable(false)
+//                ->printable(false)
+//                ->addClass('text-center pt-3')
+//                ->orderable(false)
+//                ->searchable(false),
         ];
     }
 

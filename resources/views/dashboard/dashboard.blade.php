@@ -18,7 +18,7 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 fw-bold mb-1 text-white">{{\App\Models\User::count()}}</h4>
+{{--                                <h4 class="tx-20 fw-bold mb-1 text-white">{{\App\Models\User::count()}}</h4>--}}
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 fw-bold mb-1 text-white">{{\App\Models\Courses::count()}}</h4>
+{{--                                <h4 class="tx-20 fw-bold mb-1 text-white">{{\App\Models\Courses::count()}}</h4>--}}
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 fw-bold mb-1 text-white">{{(\App\Models\Videos::count()) }}</h4>
+{{--                                <h4 class="tx-20 fw-bold mb-1 text-white">{{(\App\Models\Videos::count()) }}</h4>--}}
 
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    {!! $lineChart->render() !!}
+{{--                    {!! $lineChart->render() !!}--}}
                 </div>
             </div>
         </div>

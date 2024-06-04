@@ -101,9 +101,10 @@ class DashboardController extends Controller
             $startDate = $day->copy()->startOfDay();
             $endDate = $day->copy()->endOfDay();
 
-            $usersCount = DB::table('watching_video_user')
-                ->whereBetween('created_at', [$startDate, $endDate])
-                ->count();
+//            $usersCount = DB::table('watching_video_user')
+//                ->whereBetween('created_at', [$startDate, $endDate])
+//                ->count();
+            $usersCount = 0;
 
             $usersDataset[] = $usersCount;
 //

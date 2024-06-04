@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('call_us', function (Blueprint $table) {
+        Schema::create('results', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('contest_id')->unsigned();
+            $table->foreign('contest_id')->references('id')->on('contests')->onDelete('cascade');
             $table->string('user_name')->nullable();
-            $table->string('email')->nullable();
-            $table->string('description','500')->nullable();
+            $table->string('answer')->nullable();
+
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('call_us');
+        Schema::dropIfExists('results');
     }
 };

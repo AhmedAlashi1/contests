@@ -45,36 +45,36 @@
                 @can('display admins')
                     <li class="slide">
                         <a class="side-menu__item" href="{{ route('admins.index') }}">
-                            <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/3.png')}}" style=" width: 30px; height: 30px;">
+                            <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/9.png')}}" style=" width: 30px; height: 30px;">
                             <span class="side-menu__label">{{ __('Members') }}</span>
                         </a>
                     </li>
                 @endcan
 
-                @can('display roles')
-                    <li class="slide">
-                        <a class="side-menu__item" href="{{ route('roles.index') }}">
-                            <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/4.png')}}" style=" width: 30px; height: 30px;">
-                            <span class="side-menu__label">{{ __('Permissions') }}</span></a>
-                    </li>
-                @endcan
+{{--                @can('display roles')--}}
+{{--                    <li class="slide">--}}
+{{--                        <a class="side-menu__item" href="{{ route('roles.index') }}">--}}
+{{--                            <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/4.png')}}" style=" width: 30px; height: 30px;">--}}
+{{--                            <span class="side-menu__label">{{ __('Permissions') }}</span></a>--}}
+{{--                    </li>--}}
+{{--                @endcan--}}
 
-                @can('display users')
-                    <li class="slide">
-                        <a class="side-menu__item" href="{{ route('users.index') }}">
-                            <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/5.png')}}" style=" width: 30px; height: 30px;">
-                            <span class="side-menu__label">{{ __('Users') }}</span>
-                        </a>
-                    </li>
+{{--                @can('display users')--}}
+{{--                    <li class="slide">--}}
+{{--                        <a class="side-menu__item" href="{{ route('users.index') }}">--}}
+{{--                            <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/5.png')}}" style=" width: 30px; height: 30px;">--}}
+{{--                            <span class="side-menu__label">{{ __('Users') }}</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
 
-                @endcan
+{{--                @endcan--}}
 
 
                 @can('display courses')
                     <li class="slide">
-                        <a class="side-menu__item" href="{{ route('courses.index') }}">
-                            <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/6.png')}}" style=" width: 30px; height: 30px;">
-                            <span class="side-menu__label">{{ __('Courses') }}</span></a>
+                        <a class="side-menu__item" href="{{ route('contests.index') }}">
+                            <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/8.png')}}" style=" width: 30px; height: 30px;">
+                            <span class="side-menu__label">{{ __('Contests') }}</span></a>
                     </li>
                 @endcan
 
@@ -87,13 +87,13 @@
 {{--                @endcan--}}
 
 
-                @can('display settings')
-                    <li class="slide">
-                        <a class="side-menu__item" href="{{ route('settings.index') }}">
-                            <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/7.png')}}" style=" width: 30px; height: 30px;">
-                            <span class="side-menu__label">{{ __('Settings') }}</span></a>
-                    </li>
-                @endcan
+{{--                @can('display settings')--}}
+{{--                    <li class="slide">--}}
+{{--                        <a class="side-menu__item" href="{{ route('settings.index') }}">--}}
+{{--                            <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/7.png')}}" style=" width: 30px; height: 30px;">--}}
+{{--                            <span class="side-menu__label">{{ __('Settings') }}</span></a>--}}
+{{--                    </li>--}}
+{{--                @endcan--}}
 
 
             </ul>
