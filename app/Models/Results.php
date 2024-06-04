@@ -11,7 +11,14 @@ class Results extends Model
 
     protected $table = 'results';
 
+
         protected $fillable = [ 'contest_id', 'user_name','answer'];
+    protected $appends=['correct_answers'];
+
+    public function getCorrectAnswersAttribute()
+    {
+        return $this->answer == $this->contest->correct_answer ? 1 :0 ;
+    }
 
     public function contest()
     {

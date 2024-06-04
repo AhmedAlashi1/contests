@@ -6,7 +6,7 @@
 @can('update courses')
     <a href="{{route('contests.edit',$id)}}" type="button" class="btn btn-info mr-2"><i class="bi bi-pencil-fill"></i></a>
 
-    <a href="{{route('results.index',$id)}}" type="button" class="btn btn-info mr-2">Results</a>
+    <a href="{{route('results.index',$id)}}" type="button" class="btn btn-info mr-2" style="background-color: #151A6A ;border-color :#151A6A;margin-top: 5px ">Results</a>
 
 @endcan
 

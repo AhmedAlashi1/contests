@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 //use App\Models\SideMenu;
+use App\Models\Contest;
+use App\Models\Results;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -19,6 +21,15 @@ class DashboardController extends Controller
         $lastWeek = $this->getLastWeekLabels();
         $datasets = $this->generateDatasets($lastWeek);
 //        return $datasets;
+        $contestsCount = Contest::count();
+        $results = Results::with('contest')->get();
+        $correct_answers = $results->filter(function ($result) {
+            return $result->correct_answers == 1;
+        })->count();
+        $wrong_answer = $results->filter(function ($result) {
+            return $result->correct_answers == 0;
+        })->count();
+
 
         $chartOptions = [
             'responsive' => true,
@@ -64,7 +75,7 @@ class DashboardController extends Controller
 //        $menu = SideMenu::where('side_id',null)->with('side')->get();
 //        $sequences =SideMenu::where('side_id', null)->lazy();
 
-        return view('dashboard.dashboard',compact( 'lineChart'));
+        return view('dashboard.dashboard',compact( 'lineChart','contestsCount','correct_answers','wrong_answer'));
     }
 
     private function createChart($name, $type, $labels, $datasets, $options)
@@ -101,10 +112,9 @@ class DashboardController extends Controller
             $startDate = $day->copy()->startOfDay();
             $endDate = $day->copy()->endOfDay();
 
-//            $usersCount = DB::table('watching_video_user')
-//                ->whereBetween('created_at', [$startDate, $endDate])
-//                ->count();
-            $usersCount = 0;
+            $usersCount = DB::table('results')
+                ->whereBetween('created_at', [$startDate, $endDate])
+                ->count();
 
             $usersDataset[] = $usersCount;
 //
@@ -116,7 +126,7 @@ class DashboardController extends Controller
         }
 
         $datasets[] = [
-            "label" => __('Watching Video User'),
+            "label" => __('Customer answers'),
             'backgroundColor' => "#0162e8",
             'borderColor' => "#0162e8",
             "pointBorderColor" => "#0162e8",

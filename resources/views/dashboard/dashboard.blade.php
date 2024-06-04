@@ -13,12 +13,12 @@
             <div class="card overflow-hidden sales-card bg-primary-gradient">
                 <div class="px-3 pt-3  pb-2 pt-0">
                     <div class="">
-                        <h6 class="mb-3 tx-12 text-white">{{__('messages.Number of users')}}</h6>
+                        <h6 class="mb-3 tx-12 text-white">{{__('Number of Contests')}}</h6>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-{{--                                <h4 class="tx-20 fw-bold mb-1 text-white">{{\App\Models\User::count()}}</h4>--}}
+                                <h4 class="tx-20 fw-bold mb-1 text-white">{{$contestsCount}}</h4>
                             </div>
                         </div>
                     </div>
@@ -30,12 +30,12 @@
             <div class="card overflow-hidden sales-card bg-danger-gradient">
                 <div class="px-3 pt-3  pb-2 pt-0">
                     <div class="">
-                        <h6 class="mb-3 tx-12 text-white">{{__('Number of Courses')}}</h6>
+                        <h6 class="mb-3 tx-12 text-white">{{__('Number of Correct Answers')}}</h6>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-{{--                                <h4 class="tx-20 fw-bold mb-1 text-white">{{\App\Models\Courses::count()}}</h4>--}}
+                                <h4 class="tx-20 fw-bold mb-1 text-white">{{$correct_answers}}</h4>
                             </div>
                         </div>
                     </div>
@@ -47,12 +47,12 @@
             <div class="card overflow-hidden sales-card bg-success-gradient">
                 <div class="px-3 pt-3  pb-2 pt-0">
                     <div class="">
-                        <h6 class="mb-3 tx-12 text-white">{{__('Number of Videos')}}</h6>
+                        <h6 class="mb-3 tx-12 text-white">{{__('Number of Wrong Answer')}}</h6>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-{{--                                <h4 class="tx-20 fw-bold mb-1 text-white">{{(\App\Models\Videos::count()) }}</h4>--}}
+                                <h4 class="tx-20 fw-bold mb-1 text-white">{{$wrong_answer}}</h4>
 
                             </div>
                         </div>
@@ -91,11 +91,11 @@
             <div class="card">
                 <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mb-0">{{__('Number of video views')}}</h4>
+                        <h4 class="card-title mb-0">{{__('Number of answers')}}</h4>
                     </div>
                 </div>
                 <div class="card-body">
-{{--                    {!! $lineChart->render() !!}--}}
+                    {!! $lineChart->render() !!}
                 </div>
             </div>
         </div>
