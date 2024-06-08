@@ -9,6 +9,7 @@ use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\ContestsController;
 use App\Http\Controllers\Dashboard\ResultsController;
+use App\Http\Controllers\FrontEnd\HomeController;
 
 
 /*
@@ -22,7 +23,16 @@ use App\Http\Controllers\Dashboard\ResultsController;
 |
 */
 
-Route::get('/', [DashboardController::class,'index'])->middleware('auth');
+//Route::get('/', [DashboardController::class,'index'])->middleware('auth');
+
+
+//*******frontEnd*********//
+Route::group(['prefix'=>'/'], function () {
+    Route::get('/',[HomeController::class,'index']);
+    Route::get('/quiz-page/{id}',[HomeController::class,'quizPage'])->name('quiz-page');
+});
+
+
 Route::group([
     'prefix' => '/admin/',
     'middleware' => ['web']
