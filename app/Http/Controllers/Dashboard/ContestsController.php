@@ -37,7 +37,7 @@ class ContestsController extends Controller
     public function store(Request $request)
     {
         $image_path = '';
-//        try {
+        try {
             if ($request->has('photo')) {
                 $image_path = $this->uploadImage('admin', $request->photo);
             }
@@ -50,10 +50,10 @@ class ContestsController extends Controller
 
             toastr()->success(__('messages.Created successfully'));
             return redirect()->route('contests.index');
-//        } catch (\Exception $ex) {
-//            toastr()->error(__('messages.There was an error try again'));
-//            return redirect()->route('contests.create');
-//        }
+        } catch (\Exception $ex) {
+            toastr()->error(__('messages.There was an error try again'));
+            return redirect()->route('contests.create');
+        }
     }
 
     public function edit($id)
