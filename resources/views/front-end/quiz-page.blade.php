@@ -89,16 +89,18 @@
                     </figure>
                     <div class="card-content">
                         <h4 class="card-title">{{$contest->title}}</h4>
-                        {{$contest->start_time}}
-                        <br>
-                        {{$contest->end_time}}
 
                         @if($contest->start_time < \Carbon\Carbon::now() && $contest->end_time > \Carbon\Carbon::now() )
                             <div class="card-status status-ended">جارية</div>
                         @elseif($contest->start_time > \Carbon\Carbon::now())
                             <div class="card-status status-unstart"> لم تبدأ</div>
                         @elseif($contest->end_time < \Carbon\Carbon::now())
-                            <div class="card-status status-closed">   انتهت</div>
+                        @elseif($contest->end_time < \Carbon\Carbon::now())
+                            @if($contest->winner_id)
+                                <div class="card-status status-ended">   تم السحب</div>
+                            @else
+                                <div class="card-status status-closed">   انتهت</div>
+                            @endif
                         @endif
 
 

@@ -12,14 +12,16 @@ class HomeController extends Controller
 {
     public function index(){
         $contests=Contest::where('status',1)->orderBy('id','desc')->simplePaginate(6);
-
-
         return view('front-end.index',compact('contests'));
     }
     public function quizPage($id){
         $contest=Contest::find($id);
         if(!$contest or $contest->status == 0 or $contest->end_time < now()){
-            toastr()->error('هذا الاختبار غير متاح الان', 'خطأ');
+            toastr()->info('هذا الاختبار غير متاح الان🥲', 'خطأ');
+            return redirect()->back();
+        }
+        if ($contest->start_time > now()){
+            toastr()->info('هذا الاختبار لم يبدأ بعد🥹', 'خطأ');
             return redirect()->back();
         }
         $suggested_competition=explode(',',$contest->suggested_competitions);
