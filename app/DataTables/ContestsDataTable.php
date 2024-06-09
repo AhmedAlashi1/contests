@@ -86,7 +86,7 @@ class ContestsDataTable extends DataTable
      */
     public function query(Contest $model): QueryBuilder
     {
-        return $model->newQuery()->latest();
+        return $model->newQuery()->orderBy('id','desc')->latest();
     }
 
     /**

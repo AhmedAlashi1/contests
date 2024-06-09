@@ -18,10 +18,14 @@ class HomeController extends Controller
     }
     public function quizPage($id){
         $contest=Contest::find($id);
+        if(!$contest or $contest->status == 0 or $contest->end_time < now()){
+            toastr()->error('هذا الاختبار غير متاح الان', 'خطأ');
+            return redirect()->back();
+        }
         $suggested_competition=explode(',',$contest->suggested_competitions);
         $suggested_competitions=Contest::whereIn('id',$suggested_competition)->orderBy('id','desc')->get();
-
-//        return $suggested_competitions;
+//        dd($suggested_competitions);
+//
         return view('front-end.quiz-page',compact('contest','suggested_competitions'));
     }
     public function ResultStore(Request $request){
@@ -37,6 +41,11 @@ class HomeController extends Controller
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
+        }
+        $result = Results::where('contest_id',$request->contest_id)->where('user_name',$request->user_name)->first();
+        if($result){
+            toastr()->info(' لقد قمت بالاجابة على هذا السؤال من قبل 😏', 'معلومة');
+            return redirect()->back();
         }
         $data = $request->all();
         $results = Results::create($data);

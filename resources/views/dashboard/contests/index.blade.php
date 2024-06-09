@@ -1,5 +1,5 @@
 
-<x-datatable :dataTable="$dataTable" :title="__('messages.contests')">
+<x-datatable :dataTable="$dataTable" :title="__('contests')">
     <x-slot:header>
 {{--        @can('create muscles')--}}
             <div class="card-header pb-0">

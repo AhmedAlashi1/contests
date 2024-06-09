@@ -17,9 +17,9 @@
             </figure>
             <div class="card-content">
               <h4 class="card-title">{{$contest->title}}</h4>
-                {{$contest->start_time}}
-                <br>
-                {{$contest->end_time}}
+{{--                {{$contest->start_time}}--}}
+{{--                <br>--}}
+{{--                {{$contest->end_time}}--}}
 
                     @if($contest->start_time < \Carbon\Carbon::now() && $contest->end_time > \Carbon\Carbon::now() )
                     <div class="card-status status-ended">جارية</div>

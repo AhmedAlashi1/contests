@@ -27,7 +27,7 @@
                 @if($contest->answer_1)
                  <div class="check-width">
                   <label class="check-label">
-                    <input type="radio" name="answer"  value="{{$contest->answer_1}}"  />
+                    <input type="radio" name="answer"  value="{{$contest->answer_1}}" @if(old($contest->answer) == $contest->answer_1 )checked @endif  />
                     <span class="checkmark"></span>
                     <span class="check-text"> {{$contest->answer_1}} </span>
                   </label>
@@ -36,7 +36,7 @@
                @if($contest->answer_2)
                     <div class="check-width">
                   <label class="check-label">
-                    <input type="radio" name="answer"  value="{{$contest->answer_2}}"  />
+                    <input type="radio" name="answer"  value="{{$contest->answer_2}}" @if(old($contest->answer) == $contest->answer_2) checked @endif  />
                     <span class="checkmark"></span>
                       <span class="check-text"> {{$contest->answer_2}} </span>
                   </label>
@@ -64,7 +64,7 @@
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-input" name="user_name" placeholder="ادخل يوزر سناب شات الخاص بك"/>
+              <input type="text" class="form-input" name="user_name" value="{{old('user_name')}}" placeholder="ادخل يوزر سناب شات الخاص بك"/>
             </div>
             <div class="form-btn-cont">
               <button class="form-btn" type="submit">ارسال</button>
