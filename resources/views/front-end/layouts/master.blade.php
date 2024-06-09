@@ -26,9 +26,14 @@
 </header>
 @yield('content')
 <!-- Footer opened -->
-<footer>
+<footer  >
+
     <div class="container">
+
         <div class="footer-cont">
+{{--               <span> Copyright © 2024 <a href="javascript:void(0);" class="text-primary"></a>. Designed with--}}
+{{--                    <span class="fa fa-heart text-danger"></span> by <a href="https://raiyansoft.com/"> RaiyanSoft</a> All--}}
+{{--                    rights reserved</span>--}}
             <span>تصميم وتطوير </span>
             <img src="{{asset('front-end/images/raiyan.png')}}" alt="raiyansoft" />
         </div>

@@ -23,3 +23,5 @@
 <link rel="stylesheet" href="{{asset('front-end/css/fonts.css')}}" />
 <link rel="stylesheet" href="{{asset('front-end/css/main.css')}}" />
 <link rel="stylesheet" href="{{asset('front-end/css/swiper.min.css')}}" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+

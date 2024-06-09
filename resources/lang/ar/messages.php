@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Results;
+
 return [
     'success_login'=>'logged in successfully.',
     'invalid_credentials' => 'The email or password is wrong.',
@@ -40,6 +42,7 @@ return [
     'The status field is required' => 'حقل الحالة مطلوب',
     'The status field can only have the values "active" or "nonActive"' => 'حقل الحالة يمكن أن يحتوي فقط على القيم "active" أو "nonActive"',
     'Created successfully' => ' تم الاضافة بنجاح',
+    'Created successfully Results'  => ' تم ارسال الاجابة بنجاح',
     'There was an error try again' => ' حدث خطأ حاول مرة أخرى',
     'The Muscles is not exist' => ' العضلة غير موجود',
     'The User is not exist' => ' المتسخدم غير موجود',

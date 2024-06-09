@@ -7,4 +7,7 @@ return [
     'invalid_credentials' => 'البريد الالكتروني او كلمة المرور خطأ.',
     'done' => ' تمت العملية بنجاح!',
     'balance_not_enough' => 'الرصيد لا يكفي!',
+    'answer' =>[
+        'Please choose an answer'=>'الرجاء اختيار اجابة',
+    ],
 ];

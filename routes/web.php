@@ -28,8 +28,10 @@ use App\Http\Controllers\FrontEnd\HomeController;
 
 //*******frontEnd*********//
 Route::group(['prefix'=>'/'], function () {
-    Route::get('/',[HomeController::class,'index']);
+    Route::get('/',[HomeController::class,'index'])->name('quiz.index');
     Route::get('/quiz-page/{id}',[HomeController::class,'quizPage'])->name('quiz-page');
+    Route::get('/results/store',[HomeController::class,'ResultStore'])->name('results.store');
+    Route::get('/quiz-success',[HomeController::class,'quizSuccess'])->name('quiz-success');
 });
 
 

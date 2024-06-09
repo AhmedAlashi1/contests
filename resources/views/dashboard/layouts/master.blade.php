@@ -75,8 +75,6 @@
                 <span> Copyright © 2024 <a href="javascript:void(0);" class="text-primary"></a>. Designed with
                     <span class="fa fa-heart text-danger"></span> by <a href="javascript:void(0);"> RaiyanSoft</a> All
                     rights reserved.</span>
-                {{--                <span>All rights reserved for Fit Raw application, developed by Ryan Soft Company © 2023</span>--}}
-
 
             </div>
         </div>

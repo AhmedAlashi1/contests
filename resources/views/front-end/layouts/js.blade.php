@@ -50,3 +50,7 @@
         timer = setInterval(showRemaining, 1000);
     }
 </script>
+<script>
+    require('toastr/toastr.scss');
+    window.toastr = require('toastr');
+</script>
