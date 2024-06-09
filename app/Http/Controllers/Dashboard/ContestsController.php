@@ -43,7 +43,9 @@ class ContestsController extends Controller
             }
             $request['image'] =$image_path;
             $request['status'] = '1';
-            $request['suggested_competitions'] = implode(',', $request->suggested_competitions);
+            if ($request->suggested_competitions){
+                $request['suggested_competitions'] = implode(',', $request->suggested_competitions);
+            }
             $contests = Contest::create($request->all());
 
             toastr()->success(__('messages.Created successfully'));
