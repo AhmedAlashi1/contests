@@ -61,6 +61,9 @@ Route::group([
         Route::resource('contests',ContestsController::class);
         Route::get('/contests/update-status/{id}', [ContestsController::class, 'updateStatus'])->name('update-contests-status');
         Route::get('results/{contests_id}', [ResultsController::class, 'index'])->name('results.index');
+        Route::get('contests/winner/{contests_id}',[ContestsController::class,'winner'])->name('contests.winner');
+        Route::post('/winners/store',[ContestsController::class,'winnerStore'])->name('contests.winner-store');
+
 
 
 

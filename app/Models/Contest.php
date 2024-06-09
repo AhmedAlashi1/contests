@@ -11,10 +11,14 @@ class Contest extends Model
     protected $table = 'contests';
 
         protected $fillable = [ 'title', 'image','question', 'answer_1', 'answer_2', 'answer_3','answer_4',
-        'correct_answer','start_time','end_time','status','suggested_competitions'];
+        'correct_answer','start_time','end_time','status','suggested_competitions','winner_id'];
 
     public function results()
     {
         return $this->hasMany(Results::class, 'contest_id', 'id');
+    }
+    public function winner()
+    {
+        return $this->belongsTo(Results::class, 'winner_id', 'id');
     }
 }

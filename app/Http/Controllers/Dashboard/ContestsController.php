@@ -7,6 +7,7 @@ use App\DataTables\CoursesDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Contest;
 use App\Models\Courses;
+use App\Models\Results;
 use App\Traits\ImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -57,6 +58,7 @@ class ContestsController extends Controller
     {
         $contests=Contest::findorFail($id);
         $suggested_competitions = Contest::orderBy('id','desc')->get();
+//        return $contests->suggested_competitions;
 
         return view('dashboard.contests.edit', compact('contests','suggested_competitions'));
     }
@@ -97,8 +99,6 @@ class ContestsController extends Controller
                     $data['correct_answer'] = $request->answer_4;
                 }
             }
-//            return $data;
-
 
             $contests->update($data);
 
@@ -131,6 +131,36 @@ class ContestsController extends Controller
             return response()->json(__('messages.There was an error try again'), 400);
         }
     }
+    public function winner($id)
+    {
+        $contest = Contest::findorFail($id);
+//        return $contest;
+        $winners =Results::where('contest_id',$id)->where('answer',$contest->correct_answer)->get();
+        if(!$contest or $contest->status == 0){
+            toastr()->error('هذا الاختبار غير متاح الان', 'خطأ');
+            return redirect()->back();
+        }
+        if ( $contest->end_time > now()){
+            toastr()->error('لم ينتهي الاختبار بعد', 'خطأ');
+            return redirect()->back();
+        }
+        if ($contest->winner_id){
+            toastr()->error('تم اختيار الفائز بالفعل', 'خطأ');
+            return redirect()->back();
+        }
+        return view('front-end.quiz-admin', compact('winners', 'contest'));
+
+    }
+    public function winnerStore(Request $request)
+    {
+        $contest = Contest::findorFail($request->contest_id);
+
+        $contest->update(['winner_id' => $request->winner_id]);
+        toastr()->success('تم اضافة الفائز بنجاح');
+        return redirect()->route('contests.index');
+    }
+
+
 
 
 }

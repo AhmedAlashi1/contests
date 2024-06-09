@@ -1,6 +1,7 @@
 <script src="{{asset('front-end/js/jquery-3.4.1.min.js')}}"></script>
 <script src="{{asset('front-end/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('front-end/js/swiper.min.js')}}"></script>
+<script src="{{url('https://d3js.org/d3.v3.min.js')}}"></script>
 <script src="{{asset('front-end/js/script.js')}}"></script>
 <script>
     CountDownTimer("02/19/2025 10:1 AM", "countdown");
@@ -49,8 +50,4 @@
 
         timer = setInterval(showRemaining, 1000);
     }
-</script>
-<script>
-    require('toastr/toastr.scss');
-    window.toastr = require('toastr');
 </script>

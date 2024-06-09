@@ -1,23 +1,11 @@
 @extends('front-end.layouts.master')
 @section('content')
     <!-- preloader -->
-    <div class="preloader">
-      <div class="progress">
-        <div class="progress-bar"></div>
-      </div>
-    </div>
-    <!-- preloader -->
-    <header class="upper-head">
-      <a href="index.html" class="logo-ancor">
-        <figure class="logo-img">
-          <img src="images/logo.png" alt="logo" class="img-fluid" />
-        </figure>
-      </a>
-    </header>
+
     <div class="main-bg">
       <div class="container">
         <figure>
-          <img src="images/item.jpeg" alt="bg" />
+          <img src="{{url($contest->image)}}" alt="bg" />
         </figure>
       </div>
     </div>
@@ -25,43 +13,57 @@
       <div class="container">
         <div class="quiz-page">
           <div class="quiz-content">
-            <h4 class="card-title">توقع مباراة نهائي دوري الأبطال</h4>
-            <div class="countdown-container">
-              <div class="counttimer" id="countdown"></div>
-            </div>
-            <span class="card-foot">لأغلاق المسابقة</span>
+            <h4 class="card-title">{{$contest->title}}</h4>
+{{--            <div class="countdown-container">--}}
+{{--              <div class="counttimer" id="countdown"></div>--}}
+{{--            </div>--}}
+{{--            <span class="card-foot">لأغلاق المسابقة</span>--}}
           </div>
         </div>
         <div class="quiz-form">
-          <form action="quiz-sucess.html">
+          <form action="">
             <div class="form-group">
               <label class="form-label required">
-                توقع نتيجة المباراة النهائية لدوري الأبطال 2024 بين فريق ريال
-                مدريد وفريق بروسيا دورتموند</label
-              >
-              <p class="card-pargh">اختر الاجابة الصحيحة</p>
+                  {{$contest->question}}
+              </label>
+{{--              <p class="card-pargh">اختر الاجابة الصحيحة</p>--}}
               <div class="check-group">
-                <div class="check-width">
-                  <label class="check-label">
-                    <input type="radio" checked name="age" />
-                    <span class="checkmark"></span>
-                    <span class="check-text"> فوز ريال مدريد </span>
-                  </label>
-                </div>
-                <div class="check-width">
-                  <label class="check-label">
-                    <input type="radio" name="age" />
-                    <span class="checkmark"></span>
-                    <span class="check-text">فوز بروسيا دورتموند</span>
-                  </label>
-                </div>
-                <div class="check-width">
-                  <label class="check-label">
-                    <input type="radio" name="age" />
-                    <span class="checkmark"></span>
-                    <span class="check-text"> تعادل الفريقين</span>
-                  </label>
-                </div>
+                  @if($contest->answer_1)
+                      <div class="check-width">
+                          <label class="check-label">
+                              <input type="radio" name="answer"  value="{{$contest->answer_1}}" @if($contest->correct_answer == $contest->answer_1 )checked @endif  disabled />
+                              <span class="checkmark"></span>
+                              <span class="check-text"> {{$contest->answer_1}} </span>
+                          </label>
+                      </div>
+                  @endif
+                      @if($contest->answer_2)
+                          <div class="check-width">
+                              <label class="check-label">
+                                  <input type="radio" name="answer"  value="{{$contest->answer_2}}" @if($contest->correct_answer == $contest->answer_2 )checked @endif  disabled  />
+                                  <span class="checkmark"></span>
+                                  <span class="check-text"> {{$contest->answer_2}} </span>
+                              </label>
+                          </div>
+                      @endif
+                      @if($contest->answer_3)
+                          <div class="check-width">
+                              <label class="check-label">
+                                  <input type="radio" name="answer"  value="{{$contest->answer_3}}" @if($contest->correct_answer == $contest->answer_3 )checked @endif  disabled  />
+                                  <span class="checkmark"></span>
+                                  <span class="check-text"> {{$contest->answer_3}} </span>
+                              </label>
+                          </div>
+                      @endif
+                      @if($contest->answer_4)
+                          <div class="check-width">
+                              <label class="check-label">
+                                  <input type="radio" name="answer"  value="{{$contest->answer_4}}" @if($contest->correct_answer == $contest->answer_4 )checked @endif  disabled />
+                                  <span class="checkmark"></span>
+                                  <span class="check-text"> {{$contest->answer_4}} </span>
+                              </label>
+                          </div>
+                      @endif
               </div>
             </div>
             <div class="form-btn-cont">
@@ -75,20 +77,7 @@
         <div class="winner-spin">
           <div class="wheel-spin-box">
             <div id="spinwheel">
-              <div class="wheeldotsround">
-                <div class="wheeldots"></div>
-                <div class="wheeldots"></div>
-                <div class="wheeldots"></div>
-                <div class="wheeldots"></div>
-                <div class="wheeldots"></div>
-                <div class="wheeldots"></div>
-                <div class="wheeldots"></div>
-                <div class="wheeldots"></div>
-                <div class="wheeldots"></div>
-                <div class="wheeldots"></div>
-                <div class="wheeldots"></div>
-                <div class="wheeldots"></div>
-              </div>
+              <div class="wheeldotsround"></div>
             </div>
             <div id="spin-arrow" class="wheel-spin-arrow">
               <svg
@@ -116,18 +105,37 @@
       <div class="spin-result">
         <h3>الفائز هو</h3>
         <span id="spinWinner"></span>
+          <form action="{{route('contests.winner-store')}}" method="post">
+              @csrf
+              <input type="hidden" name="contest_id" value="{{$contest->id}}">
+              <input type="hidden" name="winner_id" id="spinWinner2" value="">
+              <button class="form-btn" type="submit" style="padding : 0px 130px;">تأكيد</button>
+          </form>
+
+        <button class="form-btn" onclick="closeSpin()">إغلاق</button>
+
       </div>
       <div class="spin-img">
         <img
           class="celecbrite-2"
-          src="images/celebrite-2.gif"
+          src="{{asset('front-end/images/celebrite-2.gif')}}"
           alt="celecbrite"
         />
         <img
           class="celecbrite-1"
-          src="images/celebrite-1.gif"
+          src="{{asset('front-end/images/celebrite-1.gif')}}"
           alt="celecbrite"
         />
       </div>
     </div>
+<script>
+    var data = [
+        @foreach($winners as $winner)
+        { label: "{{$winner->user_name}}", value: 1, xp: "{{$winner->user_name}}" ,id_user: "{{$winner->id}}"},
+        @endforeach
+
+    ];
+</script>
+
+
 @endsection

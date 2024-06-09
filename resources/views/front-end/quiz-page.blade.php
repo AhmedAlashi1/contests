@@ -45,7 +45,7 @@
                @if($contest->answer_3)
                     <div class="check-width">
                   <label class="check-label">
-                    <input type="radio" name="answer"  value="{{$contest->answer_3}}" />
+                    <input type="radio" name="answer"  value="{{$contest->answer_3}}" @if(old($contest->answer) == $contest->answer_3 )checked @endif  />
                     <span class="checkmark"></span>
                       <span class="check-text"> {{$contest->answer_3}} </span>
                   </label>
@@ -54,7 +54,7 @@
                 @if($contest->answer_4)
                     <div class="check-width">
                         <label class="check-label">
-                            <input type="radio" name="answer"  value="{{$contest->answer_4}}" />
+                            <input type="radio" name="answer"  value="{{$contest->answer_4}}" @if(old($contest->answer) == $contest->answer_4 )checked @endif />
                             <span class="checkmark"></span>
                             <span class="check-text"> {{$contest->answer_4}} </span>
                         </label>

@@ -95,7 +95,8 @@
                                 <label for="exampleInputEmail1">{{ __('messages.suggested_competitions') }} :</label>
                                 <select class="testselect2" name="suggested_competitions[]" multiple="multiple" >
                                     @foreach($suggested_competitions  as $suggested_competition)
-                                        <option value="{{$suggested_competition->id}}" {{ in_array($suggested_competition->id, @json_decode($contests->suggested_competitions) ?? []) ? 'selected' : '' }}>{{$suggested_competition->title}}</option>
+                                        <option value="{{$suggested_competition->id}}" >{{$suggested_competition->title}}</option>
+{{--                                        <option value="{{$suggested_competition->id}}" {{ in_array($suggested_competition->id, @json_decode($contests->suggested_competitions) ?? []) ? 'selected' : '' }}>{{$suggested_competition->title}}</option>--}}
                                     @endforeach
                                 </select>
                             </div>

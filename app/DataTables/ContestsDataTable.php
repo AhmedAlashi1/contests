@@ -38,8 +38,9 @@ class ContestsDataTable extends DataTable
             ->addColumn('name', function ($contests) {
                 return  $contests->title;
             })
-            ->addColumn('question', function ($contests) {
-                return  $contests->question;
+            ->addColumn('winner', function ($contests) {
+                   return $contests->winner ? '<a href="' . 'https://www.snapchat.com/add/'.$contests->winner->user_name  . '">' . $contests->winner->user_name . '</a>' : null;
+
             })
             ->addColumn('start_time', function ($contests) {
                 return  $contests->start_time;
@@ -53,8 +54,7 @@ class ContestsDataTable extends DataTable
 //            ->addColumn('is_paid', function ($contests) {
 //                return $contests->is_paid == 1 ? __('Paid') : __('Free');
 //            })
-            ->rawColumns(['action'])
-
+            ->rawColumns(['action','winner'])
 
             ->filterColumn('name', function ($query, $keyword) {
                 $query->where(function ($query) use ($keyword) {
@@ -86,7 +86,7 @@ class ContestsDataTable extends DataTable
      */
     public function query(Contest $model): QueryBuilder
     {
-        return $model->newQuery()->orderBy('id','desc')->latest();
+        return $model->newQuery()->orderBy('id','desc')->with('winner')->latest();
     }
 
     /**
@@ -142,9 +142,7 @@ class ContestsDataTable extends DataTable
             Column::make('name')
                 ->title(__('messages.title'))
                 ->addClass('text-center pt-3'),
-            Column::make('question')
-                ->title(__('messages.question'))
-                ->addClass('text-center pt-3'),
+
             Column::make('start_time')
                 ->title(__('messages.start_time'))
                 ->addClass('text-center pt-3'),
@@ -156,6 +154,9 @@ class ContestsDataTable extends DataTable
                 ->addClass('text-center'),
             Column::make('created_at')
                 ->title(__('messages.created at'))
+                ->addClass('text-center pt-3'),
+            Column::make('winner')
+                ->title(__('winner'))
                 ->addClass('text-center pt-3'),
             Column::computed('action')
                 ->title(__('messages.Actions'))

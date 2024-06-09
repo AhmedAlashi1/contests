@@ -25,6 +25,7 @@ return new class extends Migration
             $table->dateTime('end_time')->nullable();
             $table->boolean('status')->default(0);
             $table->string('suggested_competitions');
+            $table->integer('winner_id')->nullable();
             $table->timestamps();
         });
     }
