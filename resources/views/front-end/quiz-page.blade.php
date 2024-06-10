@@ -75,7 +75,7 @@
                 @if($contest->start_time < now())
                     <button class="form-btn" type="submit" >ارسال</button>
                 @else
-                    <a class="form-btn" style="background-color:black" disabled>لما تبداء المسابقة بعد</a>
+                    <a class="form-btn" style="background-color:black" disabled>لم تبداء المسابقة بعد</a>
                 @endif
 
 

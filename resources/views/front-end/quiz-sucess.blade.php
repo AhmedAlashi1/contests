@@ -13,8 +13,8 @@
                 <i class="las la-check-circle"></i>
               </h1>
               <h2 class="success-title">تم تسجيل اجابتك بنجاح</h2>
-              <p class="success-pargh">يمكنك زيارة الصفحة الرائيسية</p>
-              <a href="{{route('quiz.index')}}" class="apply-btn" rel="nofollow"> الذهاب الى</a>
+{{--              <p class="success-pargh">يمكنك زيارة الصفحة الرائيسية</p>--}}
+{{--              <a href="{{route('quiz.index')}}" class="apply-btn" rel="nofollow"> الذهاب الى</a>--}}
             </div>
           </div>
         </div>
