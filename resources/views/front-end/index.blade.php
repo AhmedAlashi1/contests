@@ -20,7 +20,8 @@
 {{--                {{$contest->start_time}}--}}
 {{--                <br>--}}
 {{--                {{$contest->end_time}}--}}
-
+{{--                <br>--}}
+{{--                {{\Carbon\Carbon::now()}}--}}
                     @if($contest->start_time < \Carbon\Carbon::now() && $contest->end_time > \Carbon\Carbon::now() )
                     <div class="card-status status-ended">جارية</div>
                     @elseif($contest->start_time > \Carbon\Carbon::now())
