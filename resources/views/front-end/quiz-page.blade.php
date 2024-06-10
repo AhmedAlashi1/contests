@@ -106,7 +106,6 @@
                         @elseif($contest->start_time > \Carbon\Carbon::now())
                             <div class="card-status status-unstart"> لم تبدأ</div>
                         @elseif($contest->end_time < \Carbon\Carbon::now())
-                        @elseif($contest->end_time < \Carbon\Carbon::now())
                             @if($contest->winner_id)
                                 <div class="card-status status-ended">   تم السحب</div>
                             @else
