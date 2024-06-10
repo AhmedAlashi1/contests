@@ -20,10 +20,10 @@ class HomeController extends Controller
             toastr()->info('هذا الاختبار غير متاح الان🥲', 'خطأ');
             return redirect()->back();
         }
-        if ($contest->start_time > now()){
-            toastr()->info('هذا الاختبار لم يبدأ بعد🥹', 'خطأ');
-            return redirect()->back();
-        }
+//        if ($contest->start_time > now()){
+//            toastr()->info('هذا الاختبار لم يبدأ بعد🥹', 'خطأ');
+//            return redirect()->back();
+//        }
         $suggested_competition=explode(',',$contest->suggested_competitions);
         $suggested_competitions=Contest::whereIn('id',$suggested_competition)->orderBy('id','desc')->get();
 //        dd($suggested_competitions);
@@ -47,6 +47,11 @@ class HomeController extends Controller
         $result = Results::where('contest_id',$request->contest_id)->where('user_name',$request->user_name)->first();
         if($result){
             toastr()->info(' لقد قمت بالاجابة على هذا السؤال من قبل 😏', 'معلومة');
+            return redirect()->back();
+        }
+        $contest = Contest::where('id',$request->contest_id)->first();
+        if ($contest->start_time > now()){
+            toastr()->info('هذا الاختبار لم يبدأ بعد🥹', 'خطأ');
             return redirect()->back();
         }
         $data = $request->all();

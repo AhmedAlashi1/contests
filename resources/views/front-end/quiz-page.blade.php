@@ -67,7 +67,13 @@
               <input type="text" class="form-input" name="user_name" value="{{old('user_name')}}" placeholder="ادخل يوزر سناب شات الخاص بك"/>
             </div>
             <div class="form-btn-cont">
-              <button class="form-btn" type="submit">ارسال</button>
+                @if($contest->start_time < now())
+                    <button class="form-btn" type="submit" >ارسال</button>
+                @else
+                    <a class="form-btn" style="background-color:black" disabled>لما تبداء المسابقة بعد</a>
+                @endif
+
+
             </div>
           </form>
         </div>
