@@ -92,21 +92,21 @@
       <div class="swiper-cont">
         <div class="swiper-container">
           <div class="swiper-wrapper">
-              @foreach($suggested_competitions as  $contest)
+              @foreach($suggested_competitions as  $contes)
             <div class="swiper-slide">
-                <a href="{{route('quiz-page',$contest->id)}}" class="quiz-card">
+                <a href="{{route('quiz-page',$contes->id)}}" class="quiz-card">
                     <figure>
-                        <img src="{{url($contest->image)}}" alt="quiz-img" />
+                        <img src="{{url($contes->image)}}" alt="quiz-img" />
                     </figure>
                     <div class="card-content">
-                        <h4 class="card-title">{{$contest->title}}</h4>
+                        <h4 class="card-title">{{$contes->title}}</h4>
 
-                        @if($contest->start_time < \Carbon\Carbon::now() && $contest->end_time > \Carbon\Carbon::now() )
+                        @if($contes->start_time < \Carbon\Carbon::now() && $contes->end_time > \Carbon\Carbon::now() )
                             <div class="card-status status-ended">جارية</div>
-                        @elseif($contest->start_time > \Carbon\Carbon::now())
+                        @elseif($contes->start_time > \Carbon\Carbon::now())
                             <div class="card-status status-unstart"> لم تبدأ</div>
-                        @elseif($contest->end_time < \Carbon\Carbon::now())
-                            @if($contest->winner_id)
+                        @elseif($contes->end_time < \Carbon\Carbon::now())
+                            @if($contes->winner_id)
                                 <div class="card-status status-ended">   تم السحب</div>
                             @else
                                 <div class="card-status status-closed">   انتهت</div>
@@ -115,7 +115,7 @@
 
 
                         <div class="countdown-container">
-                            <div class="counttimer" id="{{$contest->id}}"></div>
+                            <div class="counttimer" id="{{$contes->id}}"></div>
                         </div>
                         <span class="card-foot">لبدأ المسابقة</span>
                     </div>
