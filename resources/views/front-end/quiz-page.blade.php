@@ -5,6 +5,11 @@
        <script> toastr.error("{{ $error }}");</script>
 {{--        <div class="alert alert-danger">{{ $error }}</div>--}}
     @endforeach
+{{--    <div class="main-img">--}}
+        <figure>
+            <img src="{{url($contest->image)}}" alt="bg" style="width: 100%; max-height: 300px; margin-bottom: 20px "  />
+        </figure>
+{{--    </div>--}}
     <section class="quiz-section">
       <div class="container">
         <div class="quiz-page">
