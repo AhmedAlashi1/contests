@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function quizPage($id){
         $contest=Contest::find($id);
         if(!$contest or $contest->status == 0 or $contest->end_time < now()){
-            toastr()->info('هذا الاختبار غير متاح الان🥲', 'خطأ');
+            toastr()->info('هذا الاختبار غير متاح الان🥲', ' 🎁 winneBox ');
             return redirect()->back();
         }
 //        if ($contest->start_time > now()){
@@ -46,19 +46,19 @@ class HomeController extends Controller
         }
         $result = Results::where('contest_id',$request->contest_id)->where('user_name',$request->user_name)->first();
         if($result){
-            toastr()->info(' لقد قمت بالاجابة على هذا السؤال من قبل 😏', 'معلومة');
+            toastr()->info(' لقد قمت بالاجابة على هذا السؤال من قبل 😏', ' 🎁 winneBox ');
             return redirect()->back();
         }
         $contest = Contest::where('id',$request->contest_id)->first();
         if ($contest->start_time > now()){
-            toastr()->info('هذا الاختبار لم يبدأ بعد🥹', 'خطأ');
+            toastr()->info('هذا الاختبار لم يبدأ بعد🥹', ' 🎁 winneBox ');
             return redirect()->back();
         }
         $data = $request->all();
         $results = Results::create($data);
-        toastr()->success('تم ارسال الاجابة بنجاح');
+        toastr()->success('تم ارسال الاجابة بنجاح',' 🎁 winneBox ');
 
-        return redirect()->route('quiz-success');
+        return redirect()->route('quiz.index');
 
     }
     public function quizSuccess(){

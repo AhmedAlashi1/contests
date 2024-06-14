@@ -51,6 +51,3 @@
         timer = setInterval(showRemaining, 1000);
     }
 </script>
-
-
-

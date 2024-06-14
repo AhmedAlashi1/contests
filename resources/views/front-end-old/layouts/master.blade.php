@@ -12,9 +12,19 @@
     @stack('styles')
 </head>
 <body>
-
+<div class="preloader">
+    <div class="progress">
+        <div class="progress-bar"></div>
+    </div>
+</div>
 <!-- preloader -->
-
+<header class="upper-head">
+    <a href="{{url('/')}}" class="logo-ancor">
+        <figure class="logo-img">
+            <img src="{{asset('front-end/images/logo.png')}}" alt="logo" class="img-fluid" />
+        </figure>
+    </a>
+</header>
 @yield('content')
 <!-- Footer opened -->
 <footer  >
