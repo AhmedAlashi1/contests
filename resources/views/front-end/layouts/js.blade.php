@@ -3,6 +3,8 @@
 <script src="{{asset('front-end/js/swiper.min.js')}}"></script>
 <script src="{{url('https://d3js.org/d3.v3.min.js')}}"></script>
 <script src="{{asset('front-end/js/script.js')}}"></script>
+
+
 <script>
     CountDownTimer("02/19/2025 10:1 AM", "countdown");
     CountDownTimer("02/20/2025 10:1 AM", "newcountdown");

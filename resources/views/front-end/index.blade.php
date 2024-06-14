@@ -108,22 +108,13 @@
           </div>
           <div class="modal-body">
             <ul class="points-list">
-              <li>
-                <span class="points-name">نادر أحمد</span>
-                <span class="points-num"> 125 نقطة</span>
-              </li>
-              <li>
-                <span class="points-name">نادر أحمد</span>
-                <span class="points-num"> 125 نقطة</span>
-              </li>
-              <li>
-                <span class="points-name">نادر أحمد</span>
-                <span class="points-num"> 125 نقطة</span>
-              </li>
-              <li>
-                <span class="points-name">نادر أحمد</span>
-                <span class="points-num"> 125 نقطة</span>
-              </li>
+                @foreach($points as $point)
+                    <li>
+                        <span class="points-name">{{$point->name}}</span>
+                        <span class="points-num"> {{$point->point}} نقطة</span>
+                    </li>
+                @endforeach
+
             </ul>
           </div>
         </div>

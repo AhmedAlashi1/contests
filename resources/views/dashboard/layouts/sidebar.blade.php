@@ -77,8 +77,16 @@
                             <span class="side-menu__label">{{ __('Contests') }}</span></a>
                     </li>
                 @endcan
+{{--                @can('display courses')--}}
+                    <li class="slide">
+                        <a class="side-menu__item" href="{{ route('points.index') }}">
+                            <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/10.png')}}" style=" width: 30px; height: 30px;">
+                            <span class="side-menu__label">{{ __('Points') }}</span></a>
+                    </li>
+{{--                @endcan--}}
 
-{{--                @can('display videos')--}}
+
+                {{--                @can('display videos')--}}
 {{--                    <li class="slide">--}}
 {{--                        <a class="side-menu__item" href="{{ route('videos.index') }}">--}}
 {{--                            <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon/3.png')}}" style=" width: 30px; height: 30px;">--}}

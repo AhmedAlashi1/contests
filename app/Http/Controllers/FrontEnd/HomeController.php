@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contest;
+use App\Models\Points;
 use App\Models\Results;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -12,10 +13,13 @@ class HomeController extends Controller
 {
     public function index(){
         $contests=Contest::where('status',1)->orderBy('id','desc')->simplePaginate(6);
-        return view('front-end.index',compact('contests'));
+        $points = Points::orderBy('id','desc')->get();
+        return view('front-end.index',compact('contests','points'));
     }
     public function quizPage($id){
         $contest=Contest::find($id);
+        $points = Points::orderBy('id','desc')->get();
+
         if(!$contest or $contest->status == 0 or $contest->end_time < now()){
             toastr()->info('هذا الاختبار غير متاح الان🥲', ' 🎁 winneBox ');
             return redirect()->back();
@@ -28,7 +32,7 @@ class HomeController extends Controller
         $suggested_competitions=Contest::whereIn('id',$suggested_competition)->orderBy('id','desc')->get();
 //        dd($suggested_competitions);
 //
-        return view('front-end.quiz-page',compact('contest','suggested_competitions'));
+        return view('front-end.quiz-page',compact('contest','suggested_competitions','points'));
     }
     public function ResultStore(Request $request){
 

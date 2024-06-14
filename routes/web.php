@@ -9,6 +9,7 @@ use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\ContestsController;
 use App\Http\Controllers\Dashboard\ResultsController;
+use App\Http\Controllers\Dashboard\PointsController;
 use App\Http\Controllers\FrontEnd\HomeController;
 
 
@@ -64,6 +65,8 @@ Route::group([
         Route::get('contests/winner/{contests_id}',[ContestsController::class,'winner'])->name('contests.winner');
         Route::post('/winners/store',[ContestsController::class,'winnerStore'])->name('contests.winner-store');
 
+        Route::resource('points',PointsController::class);
+        Route::get('/points/update-status/{id}', [PointsController::class, 'updateStatus'])->name('update-points-status');
 
 
 

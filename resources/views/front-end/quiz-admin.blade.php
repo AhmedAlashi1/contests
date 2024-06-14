@@ -5,67 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>winner box</title>
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="images/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="images/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="images/favicon/favicon-16x16.png"
-    />
-    <link rel="manifest" href="images/favicon/site.webmanifest" />
-    <link rel="stylesheet" href="css/line-awesome.min.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/bootstrap.rtl.min.css" />
-    <link rel="stylesheet" href="css/fonts.css" />
-    <link rel="stylesheet" href="css/swiper.min.css" />
-    <link rel="stylesheet" href="css/main.css" />
+      <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="{{asset('front-end/images/favicon/apple-touch-icon.png')}}"
+      />
+      <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="{{asset('front-end/images/favicon/favicon-32x32.png')}}"
+      />
+      <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="{{asset('front-end/images/favicon/favicon-16x16.png')}}"
+      />
+      <link rel="manifest" href="{{asset('front-end/images/favicon/site.webmanifest')}}" />
+      <link rel="stylesheet" href="{{asset('front-end/css/line-awesome.min.css')}}" />
+      <link rel="stylesheet" href="{{asset('front-end/css/bootstrap.min.css')}}" />
+      <link rel="stylesheet" href="{{asset('front-end/css/bootstrap.rtl.min.css')}}" />
+      <link rel="stylesheet" href="{{asset('front-end/css/fonts.css')}}" />
+      <link rel="stylesheet" href="{{asset('front-end/css/swiper.min.css')}}" />
+      <link rel="stylesheet" href="{{asset('front-end/css/main.css')}}" />
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
   </head>
 
   <body id="body">
     <!-- preloader -->
     <div class="preloader">
-      <div class="progress">
-        <div class="progress-bar"></div>
-      </div>
+        <div class="progress">
+            <div class="progress-bar"></div>
+        </div>
     </div>
     <!-- preloader -->
     <section class="header-cont">
-      <header class="upper-head">
-        <a href="index.html" class="logo-ancor">
-          <figure class="logo-img">
-            <img src="images/logo.png" alt="logo" class="img-fluid" />
-          </figure>
-        </a>
-        <button
-          type="button"
-          class="points-btn"
-          data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop"
-        >
-          النقاط
-        </button>
-      </header>
-      <div class="main-img">
-        <figure class="main-figure">
-          <img src="images/main.png" alt="bg" />
-        </figure>
-        <figure
-          class="float-img"
-          style="background-image: url(images/float.gif)"
-        >
-          <!-- <img src="images/float.gif" alt="bg"> -->
-        </figure>
-      </div>
+        <header class="upper-head">
+            <a href="{{url('/')}}" class="logo-ancor">
+                <figure class="logo-img">
+                    <img src="{{asset('front-end/images/logo.png')}}" alt="logo" class="img-fluid" />
+                </figure>
+            </a>
+            <button
+                type="button"
+                class="points-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+            >
+                النقاط
+            </button>
+        </header>
+        <div class="main-img">
+            <figure class="main-figure">
+                <img src="{{asset('front-end/images/main.png')}}" alt="bg" />
+            </figure>
+            <figure
+                class="float-img"
+                style="background-image: url({{url('front-end/images/float.gif')}})"
+            >
+                <!-- <img src="images/float.gif" alt="bg"> -->
+            </figure>
+        </div>
     </section>
     <section class="quiz-section">
       <div class="container">
@@ -183,11 +184,11 @@
         />
       </div> -->
     </div>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/swiper.min.js"></script>
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{{asset('front-end/js/jquery-3.4.1.min.js')}}"></script>
+    <script src="{{asset('front-end/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('front-end/js/swiper.min.js')}}"></script>
+    <script src="{{url('https://d3js.org/d3.v3.min.js')}}"></script>
+    <script src="{{asset('front-end/js/script.js')}}"></script>
     <script>
       CountDownTimer("05/19/2024 10:1 AM", "countdown");
 
