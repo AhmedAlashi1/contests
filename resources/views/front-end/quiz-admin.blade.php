@@ -41,34 +41,25 @@
 </div>
 <!-- preloader -->
 <section class="header-cont">
-    <header class="upper-head">
-        <a href="{{url('/')}}" class="logo-ancor">
-            <figure class="logo-img">
-                <img src="{{asset('front-end/images/logo.png')}}" alt="logo" class="img-fluid" />
-            </figure>
-        </a>
-        <button
-            type="button"
-            class="points-btn"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
-        >
-            النقاط
-        </button>
-    </header>
-    <div class="main-img">
-        <figure class="main-figure">
-            <img src="{{asset('front-end/images/main.png')}}" alt="bg" />
-        </figure>
-        <figure
-            class="float-img"
-            style="background-image: url({{url('front-end/images/float.gif')}})"
-        >
-            <!-- <img src="images/float.gif" alt="bg"> -->
-        </figure>
-    </div>
+{{--    <header class="upper-head">--}}
+{{--        <a href="{{url('/')}}" class="logo-ancor">--}}
+{{--            <figure class="logo-img">--}}
+{{--                <img src="{{asset('front-end/images/logo.png')}}" alt="logo" class="img-fluid" />--}}
+{{--            </figure>--}}
+{{--        </a>--}}
+{{--        <button--}}
+{{--            type="button"--}}
+{{--            class="points-btn"--}}
+{{--            data-bs-toggle="modal"--}}
+{{--            data-bs-target="#staticBackdrop"--}}
+{{--        >--}}
+{{--            النقاط--}}
+{{--        </button>--}}
+{{--    </header>--}}
+
 </section>
 <section class="quiz-section">
+<header>
     <div class="container">
         <div class="quiz-page">
             <div class="quiz-content">
@@ -134,6 +125,19 @@
         </div>
         <div class="overlay-spin"></div>
     </div>
+
+</header>
+    <div class="main-img">
+        <figure class="main-figure">
+            <img src="{{asset('front-end/images/main.png')}}" alt="bg" />
+        </figure>
+        <figure
+            class="float-img"
+            style="background-image: url({{url('front-end/images/float.gif')}})"
+        >
+            <!-- <img src="images/float.gif" alt="bg"> -->
+        </figure>
+    </div>
 </section>
 <footer  >
 
@@ -152,6 +156,12 @@
     <div class="spin-result" id="spin-result">
         <h3>الفائز هو</h3>
         <span id="spinWinner"></span>
+        <form action="{{route('contests.winner-store')}}" method="post">
+            @csrf
+            <input type="hidden" name="contest_id" value="{{$contest->id}}">
+            <input type="hidden" name="winner_id" id="spinWinner2" value="">
+            <button class="form-btn" type="submit" style="padding : 0px 130px;">تأكيد</button>
+        </form>
     </div>
     <div class="winner-spin">
         <div class="wheel-spin-box">

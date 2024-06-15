@@ -374,7 +374,7 @@ header {
 }
 
 .quiz-section {
-  margin-top: -60px;
+  /*margin-top: -60px;*/
   position: relative;
   z-index: 1;
 }

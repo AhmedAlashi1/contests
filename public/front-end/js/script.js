@@ -166,6 +166,7 @@ function spin(d) {
       oldrotation = rotation;
       console.log(data[picked].xp);
       document.getElementById("spinWinner").innerHTML = data[picked].xp;
+      document.getElementById("spinWinner2").value = data[picked].id_user;
       document.getElementById("spin-result").classList.add("active");
       // document.getElementById("spinOverlay").style.display = "flex";
 

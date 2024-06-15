@@ -153,11 +153,16 @@ class ContestsController extends Controller
             toastr()->error('تم اختيار الفائز بالفعل', 'خطأ');
             return redirect()->back();
         }
+        if (!$contest->correct_answer){
+            toastr()->info('قم بختيار الاجابة الصحيحة اولاً', 'معلومة');
+            return redirect()->back();
+        }
         return view('front-end.quiz-admin', compact('winners', 'contest','points'));
 
     }
     public function winnerStore(Request $request)
     {
+//        return $request->all();
         $contest = Contest::findorFail($request->contest_id);
 
         $contest->update(['winner_id' => $request->winner_id]);

@@ -30,7 +30,7 @@
                 </svg></div>
             <ul class="side-menu">
                 <li class="side-item side-item-category">{{ __('Main') }}</li>
-                @can('display dashboard')
+{{--                @can('display dashboard')--}}
                 <li class="slide">
                     <a class="side-menu__item" href="{{ route('home') }}">
                         <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/2.png')}}" style=" width: 30px; height: 30px;">
@@ -38,18 +38,18 @@
                         <span class="side-menu__label">{{ __('Dashboard ') }}</span>
                     </a>
                 </li>
-                @endcan
+{{--                @endcan--}}
 
 
                 <li class="side-item side-item-category">{{ __('General') }}</li>
-                @can('display admins')
+{{--                @can('display admins')--}}
                     <li class="slide">
                         <a class="side-menu__item" href="{{ route('admins.index') }}">
                             <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/9.png')}}" style=" width: 30px; height: 30px;">
                             <span class="side-menu__label">{{ __('Members') }}</span>
                         </a>
                     </li>
-                @endcan
+{{--                @endcan--}}
 
 {{--                @can('display roles')--}}
 {{--                    <li class="slide">--}}
@@ -70,13 +70,13 @@
 {{--                @endcan--}}
 
 
-                @can('display courses')
+{{--                @can('display courses')--}}
                     <li class="slide">
                         <a class="side-menu__item" href="{{ route('contests.index') }}">
                             <img class="side-menu__icon mCS_img_loaded" src="{{asset('icon-new/8.png')}}" style=" width: 30px; height: 30px;">
                             <span class="side-menu__label">{{ __('Contests') }}</span></a>
                     </li>
-                @endcan
+{{--                @endcan--}}
 {{--                @can('display courses')--}}
                     <li class="slide">
                         <a class="side-menu__item" href="{{ route('points.index') }}">
