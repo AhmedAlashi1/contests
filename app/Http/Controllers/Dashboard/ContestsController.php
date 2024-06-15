@@ -7,6 +7,7 @@ use App\DataTables\CoursesDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Contest;
 use App\Models\Courses;
+use App\Models\Points;
 use App\Models\Results;
 use App\Traits\ImageTrait;
 use Illuminate\Http\Request;
@@ -136,6 +137,8 @@ class ContestsController extends Controller
     public function winner($id)
     {
         $contest = Contest::findorFail($id);
+        $points = Points::orderBy('id','desc')->get();
+
 //        return $contest;
         $winners =Results::where('contest_id',$id)->where('answer',$contest->correct_answer)->get();
         if(!$contest or $contest->status == 0){
@@ -150,7 +153,7 @@ class ContestsController extends Controller
             toastr()->error('تم اختيار الفائز بالفعل', 'خطأ');
             return redirect()->back();
         }
-        return view('front-end.quiz-admin', compact('winners', 'contest'));
+        return view('front-end.quiz-admin', compact('winners', 'contest','points'));
 
     }
     public function winnerStore(Request $request)

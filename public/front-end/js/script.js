@@ -45,16 +45,16 @@ var padding = { top: 0, right: 0, bottom: 0, left: 0 },
   color = d3.scale.category20(); //category20c()
 //randomNumbers = getRandomNumbers();
 
-var data = [
-  { label: "eslam", value: 1, xp: "eslam" },
-  { label: "nader", value: 1, xp: "nader" },
-  { label: "ahmed", value: 1, xp: "ahmed" },
-  { label: "abdo", value: 1, xp: "abdo" },
-  { label: "abdo", value: 1, xp: "abdo" },
-  { label: "abdo", value: 1, xp: "abdo" },
-  { label: "0x", value: 1, xp: "you Lost 0x" },
-  { label: "2x", value: 1, xp: "you Win 2x" },
-];
+// var data = [
+//   { label: "eslam", value: 1, xp: "eslam" },
+//   { label: "nader", value: 1, xp: "nader" },
+//   { label: "ahmed", value: 1, xp: "ahmed" },
+//   { label: "abdo", value: 1, xp: "abdo" },
+//   { label: "abdo", value: 1, xp: "abdo" },
+//   { label: "abdo", value: 1, xp: "abdo" },
+//   { label: "0x", value: 1, xp: "you Lost 0x" },
+//   { label: "2x", value: 1, xp: "you Win 2x" },
+// ];
 var svg = d3
   .select("#spinwheel")
   .append("svg")

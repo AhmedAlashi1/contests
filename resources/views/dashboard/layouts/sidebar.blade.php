@@ -15,7 +15,7 @@
             <div class="app-sidebar__user clearfix">
                 <div class="dropdown user-pro-body">
                     <div class="main-img-user avatar-xl">
-                        <img alt="user-img" src="{{ asset('icon/logo3.png') }}" width="10" height="10"><span
+                        <img alt="user-img" src="{{ asset('icon/logo.png') }}" width="10" height="10"><span
                             class="avatar-status profile-status bg-green"></span>
                     </div>
                     <div class="user-info">

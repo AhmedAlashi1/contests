@@ -16,7 +16,7 @@
     <title> winners </title>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('icon/logo3.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('front-end/images/logo.png') }}" type="image/x-icon">
 
     <!-- Icons css -->
     <link href="{{ asset('dashboard/css/icons.css" rel="stylesheet') }}">
@@ -66,7 +66,7 @@
                                     <div class="card-sigin">
                                         <div class="mb-5 d-flex">
                                             <a href="#"><img
-                                                    src="{{ asset('icon/logo4.png') }}"
+                                                    src="{{ asset('front-end/images/logo.png') }}"
                                                     class="sign-favicon-a ht-40" alt="logo">
                                                 <img src="{{ asset('icon/logo4.png') }}"
                                                     class="sign-favicon-b ht-40" alt="logo">

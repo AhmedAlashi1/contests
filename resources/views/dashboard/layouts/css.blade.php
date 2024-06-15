@@ -1,5 +1,5 @@
 <!-- Favicon -->
-<link rel="icon" href="{{ asset('icon/logo4.png') }}" type="image/x-icon">
+<link rel="icon" href="{{ asset('front-end/images/logo.png') }}" type="image/x-icon">
 @if(App::getLocale() == 'en')
 
 <!-- Icons css -->
