@@ -26,7 +26,9 @@
 {{--                    <span class="fa fa-heart text-danger"></span> by <a href="https://raiyansoft.com/"> RaiyanSoft</a> All--}}
 {{--                    rights reserved</span>--}}
             <span>تصميم وتطوير </span>
-            <img src="{{asset('front-end/images/raiyan.png')}}" alt="raiyansoft" />
+            <a href="https://raiyansoft.com/" >
+                <img src="{{asset('front-end/images/raiyan.png')}}" alt="raiyansoft" />
+            </a>
         </div>
     </div>
 </footer>

@@ -1006,11 +1006,19 @@ footer {
 }
 
 .wheel-spin-box .chartholder .slice path {
-  fill: #b355df;
+    fill: #482371;
+    /* color: #37ad00; */
+}
+
+.wheel-spin-box .chartholder .slice text {
+    fill: #fff;
 }
 
 .wheel-spin-box .chartholder .slice:nth-child(2n+1) path {
-  fill: #482371;
+    fill: #fff;
+}
+.wheel-spin-box .chartholder .slice:nth-child(2n+1) text {
+    fill: #482371;
 }
 
 .wheel-spin-arrow {
