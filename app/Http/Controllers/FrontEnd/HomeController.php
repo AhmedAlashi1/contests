@@ -13,12 +13,12 @@ class HomeController extends Controller
 {
     public function index(){
         $contests=Contest::where('status',1)->orderBy('id','desc')->simplePaginate(6);
-        $points = Points::orderBy('id','desc')->get();
+        $points = Points::orderBy('point','desc')->get();
         return view('front-end.index',compact('contests','points'));
     }
     public function quizPage($id){
         $contest=Contest::find($id);
-        $points = Points::orderBy('id','desc')->get();
+        $points = Points::orderBy('point','desc')->get();
 
         if(!$contest or $contest->status == 0 or $contest->end_time < now()){
             toastr()->info('هذا الاختبار غير متاح الان🥲', ' 🎁 winneBox ');

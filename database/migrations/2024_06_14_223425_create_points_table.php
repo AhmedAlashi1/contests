@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('points', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255)->nullable();
-            $table->string('point', 255)->nullable();
+            $table->integer('point')->nullable();
             $table->boolean('status')->default(0);
 
             $table->timestamps();
